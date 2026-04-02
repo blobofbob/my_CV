@@ -25,36 +25,6 @@
             background-image: radial-gradient(circle at 50% 50%, #1a1a2e 0%, #0b0c10 100%);
         }
 
-        /* Language Toggle Styling */
-        .lang-switch-container {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            z-index: 1000;
-        }
-
-        #lang-toggle {
-            background: transparent;
-            color: var(--neon-cyan);
-            border: 1px solid var(--neon-cyan);
-            padding: 8px 15px;
-            font-family: 'JetBrains Mono', monospace;
-            cursor: pointer;
-            text-transform: uppercase;
-            font-size: 0.8rem;
-            transition: all 0.3s ease;
-            box-shadow: 0 0 5px rgba(102, 252, 241, 0.2);
-        }
-
-        #lang-toggle:hover {
-            background: var(--neon-cyan);
-            color: var(--bg-dark);
-            box-shadow: 0 0 15px rgba(102, 252, 241, 0.5);
-        }
-
-        /* Hide French by default */
-        .lang-fr { display: none; }
-
         .container {
             max-width: 900px;
             margin: 0 auto;
@@ -237,16 +207,11 @@
 </head>
 <body>
 
-<div class="lang-switch-container">
-    <button id="lang-toggle" onclick="toggleLanguage()">Français</button>
-</div>
-
 <div class="container">
     <header>
         <div>
             <h1>Gabriel Fortin Cara</h1>
-            <div class="subtitle lang-en">Student // Cybersecurity Enthusiast</div>
-            <div class="subtitle lang-fr">Étudiant // Passionné de cybersécurité</div>
+            <div class="subtitle">Student // Cybersecurity Enthusiast</div>
         </div>
         <div class="contact-details">
             London<br>
@@ -256,45 +221,34 @@
     </header>
 
     <section>
-        <h2 class="lang-en">// System_Profile</h2>
-        <h2 class="lang-fr">// Profil_Système</h2>
-        <p class="lang-en">
+        <h2>// System_Profile</h2>
+        <p>
             Highly analytical student with hands-on experience in cybersecurity, networking, and self-hosted infrastructure. Active in Capture the Flag (CTF) challenges and OSINT exercises, with strong familiarity in Debian-based Linux systems and scripting. Demonstrated problem-solving ability through ranking 2nd worldwide in an international mathematics competition. Motivated to develop technical expertise in real-world IT and security environments.
-        </p>
-        <p class="lang-fr">
-            Étudiant doté d'un fort esprit d'analyse et d'une expérience pratique en cybersécurité, réseaux et infrastructures auto-hébergées. Actif dans les défis Capture the Flag (CTF) et les exercices OSINT, avec une solide maîtrise des systèmes Linux basés sur Debian et du scripting. Capacité de résolution de problèmes démontrée par un classement au 2ème rang mondial lors d'un concours international de mathématiques. Motivé à développer une expertise technique dans des environnements informatiques et de sécurité réels.
         </p>
     </section>
 
     <section>
-        <h2 class="lang-en">// Skill_Database</h2>
-        <h2 class="lang-fr">// Base_de_Compétences</h2>
+        <h2>// Skill_Database</h2>
         <div class="skill-category">
-            <span class="category-label lang-en">Systems & Infrastructure</span>
-            <span class="category-label lang-fr">Systèmes & Infrastructure</span>
+            <span class="category-label">Systems & Infrastructure</span>
             <div class="skills-container">
                 <span class="skill-tag">Debian Linux</span>
                 <span class="skill-tag">Windows</span>
-                <span class="skill-tag lang-en">Server Admin</span>
-                <span class="skill-tag lang-fr">Admin Serveur</span>
-                <span class="skill-tag lang-en">Homelab Management</span>
-                <span class="skill-tag lang-fr">Gestion Homelab</span>
+                <span class="skill-tag">Server Admin</span>
+                <span class="skill-tag">Homelab Management</span>
             </div>
         </div>
         <div class="skill-category">
-            <span class="category-label lang-en">Networking & Security</span>
-            <span class="category-label lang-fr">Réseaux & Sécurité</span>
+            <span class="category-label">Networking & Security</span>
             <div class="skills-container">
                 <span class="skill-tag">DNS Filtering (Pi-hole)</span>
                 <span class="skill-tag">Tailscale VPN</span>
                 <span class="skill-tag">OSINT</span>
-                <span class="skill-tag lang-en">Cybersecurity Fundamentals</span>
-                <span class="skill-tag lang-fr">Bases de la Cybersécurité</span>
+                <span class="skill-tag">Cybersecurity Fundamentals</span>
             </div>
         </div>
         <div class="skill-category">
-            <span class="category-label lang-en">Programming & Tools</span>
-            <span class="category-label lang-fr">Programmation & Outils</span>
+            <span class="category-label">Programming & Tools</span>
             <div class="skills-container">
                 <span class="skill-tag">Python</span>
                 <span class="skill-tag">Bash</span>
@@ -306,134 +260,78 @@
     </section>
 
     <section>
-        <h2 class="lang-en">// Technical_Operations</h2>
-        <h2 class="lang-fr">// Opérations_Techniques</h2>
+        <h2>// Technical_Operations</h2>
         <div class="entry">
-            <h3 class="lang-en">Self-Hosted Infrastructure & Networking</h3>
-            <h3 class="lang-fr">Infrastructure Auto-Hébergée & Réseaux</h3>
-            <span class="meta lang-en">Personal Project | Systems Administration</span>
-            <span class="meta lang-fr">Projet Personnel | Administration Systèmes</span>
-            <ul class="lang-en">
+            <h3>Self-Hosted Infrastructure & Networking</h3>
+            <span class="meta">Personal Project | Systems Administration</span>
+            <ul>
                 <li>Designed and maintained a Debian-based homelab environment hosting multiple services.</li>
                 <li>Implemented Pi-hole for network-wide DNS filtering and enhanced local security.</li>
                 <li>Deployed Tailscale VPN for encrypted remote access to internal systems.</li>
                 <li>Hosted and managed a community Minecraft server, maintaining performance and uptime.</li>
                 <li>Operated a self-managed web server, gaining experience with HTTP and server configuration.</li>
             </ul>
-            <ul class="lang-fr">
-                <li>Conception et maintenance d'un environnement homelab sous Debian hébergeant plusieurs services.</li>
-                <li>Mise en œuvre de Pi-hole pour le filtrage DNS à l'échelle du réseau et l'amélioration de la sécurité locale.</li>
-                <li>Déploiement de Tailscale VPN pour un accès à distance chiffré aux systèmes internes.</li>
-                <li>Hébergement et gestion d'un serveur Minecraft communautaire, maintien des performances et de la disponibilité.</li>
-                <li>Exploitation d'un serveur web auto-géré, acquisition d'expérience en configuration HTTP et serveur.</li>
-            </ul>
         </div>
         
         <div class="entry">
-            <h3 class="lang-en">Cybersecurity & Capture the Flag (CTF)</h3>
-            <h3 class="lang-fr">Cybersécurité & Capture the Flag (CTF)</h3>
-            <span class="meta lang-en">Problem Solving | Forensics</span>
-            <span class="meta lang-fr">Résolution de Problèmes | Analyse Forensique</span>
-            <ul class="lang-en">
+            <h3>Cybersecurity & Capture the Flag (CTF)</h3>
+            <span class="meta">Problem Solving | Forensics</span>
+            <ul>
                 <li>Regular participant in picoCTF challenges involving web security, forensics, and cryptography.</li>
                 <li>Applied OSINT techniques to (with permission) research my friends and family.</li>
-            </ul>
-            <ul class="lang-fr">
-                <li>Participant régulier aux défis picoCTF (sécurité web, analyse forensique et cryptographie).</li>
-                <li>Application des techniques OSINT pour effectuer des recherches (avec permission) sur mes proches.</li>
             </ul>
         </div>
     </section>
 
     <section>
-        <h2 class="lang-en">// Education_Log</h2>
-        <h2 class="lang-fr">// Journal_Éducation</h2>
+        <h2>// Education_Log</h2>
         <div class="entry">
             <h3>Lycée Français Charles de Gaulle de Londres</h3>
             <span class="meta">Sep 2022 – Jun 2026</span>
-            <ul class="lang-en">
+            <ul>
                 <li><strong>Diplôme National du Brevet:</strong> High Distinction (Score: 870.5 / 900).</li>
                 <li><strong>Duke of Edinburgh (Silver):</strong> Developing teamwork, navigation, and resilience through multi-day expeditions.</li>
                 <li><strong>First Aid Certification (PSC1):</strong> Certified emergency response training.</li>
             </ul>
-            <ul class="lang-fr">
-                <li><strong>Diplôme National du Brevet :</strong> Mention Très Bien (Score : 870.5 / 900).</li>
-                <li><strong>Duke of Edinburgh (Silver) :</strong> Développement de l'esprit d'équipe et de la résilience via des expéditions.</li>
-                <li><strong>Certification de Premiers Secours (PSC1) :</strong> Formation certifiée aux interventions d'urgence.</li>
-            </ul>
         </div>
     </section>
 
     <section>
-        <h2 class="lang-en">// Achievements</h2>
-        <h2 class="lang-fr">// Accomplissements</h2>
+        <h2>// Achievements</h2>
         <div class="entry">
-            <ul class="lang-en">
+            <ul>
                 <li><strong>Math Competition (2024):</strong> Ranked 2nd Worldwide in the René Merckhoffer Mathematics Competition.</li>
                 <li><strong>National Order of Merit (France):</strong> Official Flagbearer.</li>
                 <li><strong>Poetry Competition (2025):</strong> 1st Place (Category Winner) at school level.</li>
             </ul>
-            <ul class="lang-fr">
-                <li><strong>Concours de Mathématiques (2024) :</strong> Classé 2ème mondial au concours René Merckhoffer.</li>
-                <li><strong>Ordre National du Mérite :</strong> Porte-drapeau officiel.</li>
-                <li><strong>Concours de Poésie (2025) :</strong> 1ère place (vainqueur de catégorie) au niveau de l'établissement.</li>
-            </ul>
         </div>
 
         <div class="entry">
-            <h3 class="lang-en">Languages</h3>
-            <h3 class="lang-fr">Langues</h3>
+            <h3>Languages</h3>
             <div class="skills-container">
-                <span class="skill-tag lang-en">English (Fluent)</span><span class="skill-tag lang-fr">Anglais (Courant)</span>
-                <span class="skill-tag lang-en">French (Fluent)</span><span class="skill-tag lang-fr">Français (Courant)</span>
-                <span class="skill-tag lang-en">Portuguese-Brazil (Fluent)</span><span class="skill-tag lang-fr">Portugais-Brésil (Courant)</span>
-                <span class="skill-tag lang-en">German (Learning)</span><span class="skill-tag lang-fr">Allemand (En apprentissage)</span>
+                <span class="skill-tag">English (Fluent)</span>
+                <span class="skill-tag">French (Fluent)</span>
+                <span class="skill-tag">Portuguese-Brazil (Fluent)</span>
+                <span class="skill-tag">German (Learning)</span>
             </div>
         </div>
     </section>
 
     <section>
-        <h2 class="lang-en">// Offline_Activities</h2>
-        <h2 class="lang-fr">// Activités_Hors_Ligne</h2>
+        <h2>// Offline_Activities</h2>
         <div class="entry">
-            <h3 class="lang-en">Competitive Épée Fencing</h3>
-            <h3 class="lang-fr">Escrime de Compétition (Épée)</h3>
-            <span class="meta lang-en">Tactical Adaptation</span>
-            <span class="meta lang-fr">Adaptation Tactique</span>
-            <p class="lang-en">Regular training and competition developing rapid decision-making, tactical planning, and focus under pressure.</p>
-            <p class="lang-fr">Entraînement régulier développant la prise de décision rapide, la planification tactique et la concentration sous pression.</p>
+            <h3>Competitive Épée Fencing</h3>
+            <span class="meta">Tactical Adaptation</span>
+            <p>Regular training and competition developing rapid decision-making, tactical planning, and focus under pressure.</p>
         </div>
         <div class="entry">
-            <h3 class="lang-en">Precision & Planning (Miniature Modelling)</h3>
-            <h3 class="lang-fr">Précision & Planification (Modélisme)</h3>
-            <span class="meta lang-en">Attention to Detail</span>
-            <span class="meta lang-fr">Souci du Détail</span>
-            <p class="lang-en">High-detail assembly and painting projects requiring structured planning and patience—directly supporting accuracy in technical work.</p>
-            <p class="lang-fr">Projets d'assemblage et de peinture de haute précision nécessitant patience et planification structurée.</p>
+            <h3>Precision & Planning (Miniature Modelling)</h3>
+            <span class="meta">Attention to Detail</span>
+            <p>High-detail assembly and painting projects requiring structured planning and patience—directly supporting accuracy in technical work.</p>
         </div>
     </section>
 
 </div>
-
-<script>
-    function toggleLanguage() {
-        const enElements = document.querySelectorAll('.lang-en');
-        const frElements = document.querySelectorAll('.lang-fr');
-        const btn = document.getElementById('lang-toggle');
-
-        if (btn.innerText === 'FRANÇAIS') {
-            enElements.forEach(el => el.style.display = 'none');
-            frElements.forEach(el => el.style.display = 'block');
-            btn.innerText = 'ENGLISH';
-            document.documentElement.lang = 'fr';
-        } else {
-            enElements.forEach(el => el.style.display = 'block');
-            frElements.forEach(el => el.style.display = 'none');
-            btn.innerText = 'FRANÇAIS';
-            document.documentElement.lang = 'en';
-        }
-    }
-</script>
 
 </body>
 </html>
