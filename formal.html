@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gabriel Fortin Cara</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&family=Fira+Code:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --void:      #07060F;
+      --gold:      #C4A24A;
+      --gold-mid:  rgba(196,162,74,0.22);
+      --gold-low:  rgba(196,162,74,0.07);
+      --amber:     #DDB95A;
+      --cyan:      #3ABFB8;
+      --cyan-mid:  rgba(58,191,184,0.2);
+      --cyan-low:  rgba(58,191,184,0.06);
+      --text:      #9E9788;
+      --text-mid:  #C2BAA5;
+      --text-hi:   #E4DEC8;
+      --border:    rgba(196,162,74,0.13);
+      --border-h:  rgba(196,162,74,0.3);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background-color: var(--void);
+      background-image:
+        radial-gradient(ellipse 70% 50% at 8% 30%, rgba(110,70,175,0.09) 0%, transparent 65%),
+        radial-gradient(ellipse 55% 40% at 90% 15%, rgba(58,191,184,0.045) 0%, transparent 55%),
+        radial-gradient(ellipse 60% 55% at 55% 90%, rgba(196,162,74,0.055) 0%, transparent 50%),
+        url("data:image/svg+xml,%3Csvg width='72' height='72' viewBox='0 0 72 72' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%23C4A24A' stroke-width='0.3' opacity='0.05'%3E%3Cpath d='M6 6L18 6L18 18'/%3E%3Cpath d='M54 6L66 6L66 18'/%3E%3Cpath d='M6 66L18 66L18 54'/%3E%3Cpath d='M54 66L66 66L66 54'/%3E%3Ccircle cx='36' cy='36' r='2'/%3E%3Cline x1='36' y1='30' x2='36' y2='25'/%3E%3Cline x1='36' y1='47' x2='36' y2='42'/%3E%3Cline x1='30' y1='36' x2='25' y2='36'/%3E%3Cline x1='47' y1='36' x2='42' y2='36'/%3E%3C/g%3E%3C/svg%3E");
+      color: var(--text);
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 17px;
+      font-weight: 400;
+      line-height: 1.65;
+      padding: 0 20px 80px;
+      overflow-x: hidden;
+    }
+
+    body::after {
+      content: '';
+      position: fixed; inset: 0;
+      background: repeating-linear-gradient(transparent 0px, transparent 3px, rgba(0,0,0,0.014) 3px, rgba(0,0,0,0.014) 4px);
+      pointer-events: none;
+      z-index: 9999;
+    }
+
+    .container { max-width: 820px; margin: 0 auto; }
+
+    /* ── HEADER ── */
+    header { padding: 72px 0 44px; border-bottom: 1px solid var(--border); margin-bottom: 48px; }
+
+    .name {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: clamp(2rem, 5.5vw, 3.5rem);
+      font-weight: 700;
+      color: var(--gold);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      line-height: 1;
+      margin-bottom: 10px;
+      text-shadow: 0 0 60px rgba(196,162,74,0.1);
+      min-height: 1.1em;
+    }
+
+    .name-cursor {
+      display: inline-block; width: 3px; height: 0.75em;
+      background: var(--gold); vertical-align: middle; margin-left: 3px;
+      animation: blink 1s step-end infinite;
+    }
+    @keyframes blink { 50% { opacity: 0; } }
+
+    .subtitle {
+      font-family: 'Fira Code', monospace;
+      font-size: 0.78rem; font-weight: 300;
+      color: var(--cyan); letter-spacing: 0.2em;
+      margin-bottom: 22px;
+      opacity: 0; transition: opacity 0.6s ease 1.9s;
+    }
+
+    .contact-row {
+      display: flex; flex-wrap: wrap; gap: 4px 0;
+      font-family: 'Fira Code', monospace;
+      font-size: 0.73rem; font-weight: 300;
+      color: var(--text);
+      opacity: 0; transition: opacity 0.6s ease 2.3s;
+    }
+
+    .contact-row .sep { margin: 0 10px; color: var(--gold-mid); }
+    .contact-row a { color: var(--text); text-decoration: none; transition: color 0.2s; }
+    .contact-row a:hover { color: var(--amber); }
+
+    /* Tor relay status pill */
+    .relay-status {
+      display: inline-flex; align-items: center; gap: 7px;
+      font-family: 'Fira Code', monospace;
+      font-size: 0.68rem; font-weight: 300;
+      color: var(--text); letter-spacing: 0.08em;
+      margin-top: 14px;
+      opacity: 0; transition: opacity 0.6s ease 2.7s;
+    }
+
+    .relay-dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: #888; flex-shrink: 0;
+    }
+    .relay-dot.active {
+      background: #3DBC6D;
+      box-shadow: 0 0 6px rgba(61,188,109,0.6);
+      animation: pulse-dot 2s ease-in-out infinite;
+    }
+    @keyframes pulse-dot {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.55; }
+    }
+
+    .show { opacity: 1 !important; }
+
+    /* ── PANELS ── */
+    .panel {
+      position: relative;
+      background: linear-gradient(145deg, rgba(16,12,30,0.93) 0%, rgba(10,9,20,0.97) 100%);
+      border: 1px solid var(--border);
+      padding: 30px 34px;
+      margin-bottom: 18px;
+      opacity: 0; transform: translateY(14px);
+      transition: opacity 0.5s ease, transform 0.5s ease, border-color 0.25s, box-shadow 0.25s;
+    }
+    .panel.visible { opacity: 1; transform: none; }
+    .panel:hover {
+      border-color: var(--border-h);
+      box-shadow: 0 0 28px rgba(196,162,74,0.035);
+    }
+
+    .panel::before { content: ''; position: absolute; top: -1px; left: -1px; width: 15px; height: 15px; border-top: 1.5px solid var(--gold); border-left: 1.5px solid var(--gold); }
+    .panel::after  { content: ''; position: absolute; bottom: -1px; right: -1px; width: 15px; height: 15px; border-bottom: 1.5px solid var(--gold); border-right: 1.5px solid var(--gold); }
+    .c-tr { position: absolute; top: -1px; right: -1px; width: 15px; height: 15px; border-top: 1.5px solid var(--gold); border-right: 1.5px solid var(--gold); }
+    .c-bl { position: absolute; bottom: -1px; left: -1px; width: 15px; height: 15px; border-bottom: 1.5px solid var(--gold); border-left: 1.5px solid var(--gold); }
+
+    /* ── SECTION HEAD ── */
+    .sec-num {
+      font-family: 'Fira Code', monospace;
+      font-size: 0.62rem; font-weight: 300;
+      color: var(--cyan); letter-spacing: 0.22em;
+      opacity: 0.5; margin-bottom: 3px;
+    }
+
+    .sec-title {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 0.76rem; font-weight: 600;
+      color: var(--gold); letter-spacing: 0.28em;
+      text-transform: uppercase;
+      display: flex; align-items: center; gap: 12px;
+      margin-bottom: 26px;
+    }
+    .sec-title::before { content: ''; width: 3px; height: 18px; background: linear-gradient(to bottom, var(--gold), var(--cyan)); flex-shrink: 0; }
+    .sec-title::after  { content: ''; flex: 1; height: 1px; background: linear-gradient(to right, var(--border), transparent); }
+
+    /* ── ENTRIES ── */
+    .entry { margin-bottom: 24px; }
+    .entry:last-child { margin-bottom: 0; }
+
+    .entry-head {
+      display: flex; justify-content: space-between;
+      align-items: baseline; flex-wrap: wrap;
+      gap: 2px; margin-bottom: 8px;
+    }
+
+    .entry-title {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 1.05rem; font-weight: 600;
+      color: var(--text-hi); letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .entry-date {
+      font-family: 'Fira Code', monospace;
+      font-size: 0.68rem; font-weight: 300;
+      color: var(--cyan); opacity: 0.6; white-space: nowrap;
+    }
+
+    .entry-sub {
+      font-family: 'Fira Code', monospace;
+      font-size: 0.68rem; font-weight: 300;
+      color: var(--gold); opacity: 0.5;
+      letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 10px;
+    }
+
+    ul.dots { list-style: none; padding: 0; margin: 0; }
+    ul.dots li {
+      position: relative; padding-left: 16px;
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 1rem; font-weight: 400;
+      color: var(--text-mid); line-height: 1.65; margin-bottom: 4px;
+    }
+    ul.dots li::before {
+      content: '◆'; position: absolute; left: 0;
+      font-size: 0.35rem; color: var(--gold); top: 8px; opacity: 0.65;
+    }
+
+    .rule { width: 100%; height: 1px; background: linear-gradient(to right, transparent, var(--border), transparent); margin: 22px 0; }
+
+    .profile-text {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 1.04rem; font-weight: 400;
+      color: var(--text-mid); line-height: 1.78; letter-spacing: 0.01em;
+    }
+
+    /* ── SKILLS ── */
+    .skill-row { margin-bottom: 14px; }
+    .skill-row:last-child { margin-bottom: 0; }
+
+    .skill-cat {
+      font-family: 'Fira Code', monospace;
+      font-size: 0.66rem; font-weight: 300;
+      color: var(--cyan); letter-spacing: 0.18em;
+      text-transform: uppercase; margin-bottom: 8px; opacity: 0.55;
+    }
+
+    .tags { display: flex; flex-wrap: wrap; gap: 6px; }
+
+    .tag {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 0.8rem; font-weight: 500;
+      color: var(--gold); background: var(--gold-low);
+      border: 1px solid var(--gold-mid);
+      padding: 3px 12px; letter-spacing: 0.1em; text-transform: uppercase;
+      cursor: default; position: relative; overflow: hidden;
+      transition: background 0.2s, color 0.2s, border-color 0.2s;
+    }
+    .tag::after {
+      content: ''; position: absolute; top: 0; left: -100%;
+      width: 100%; height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(196,162,74,0.1), transparent);
+      transition: left 0.4s ease;
+    }
+    .tag:hover::after { left: 100%; }
+    .tag:hover { background: rgba(196,162,74,0.13); color: var(--text-hi); border-color: rgba(196,162,74,0.4); }
+
+    /* ── ACHIEVEMENTS ── */
+    .ach { display: grid; grid-template-columns: 88px 1fr; gap: 0 16px; margin-bottom: 18px; align-items: start; }
+    .ach:last-child { margin-bottom: 0; }
+
+    .ach-badge {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 0.7rem; font-weight: 600;
+      color: var(--cyan); background: var(--cyan-low);
+      border: 1px solid var(--cyan-mid);
+      padding: 4px 6px; text-align: center;
+      letter-spacing: 0.08em; text-transform: uppercase; margin-top: 2px;
+    }
+
+    .ach-name {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 0.97rem; font-weight: 600;
+      color: var(--text-hi); letter-spacing: 0.05em;
+      text-transform: uppercase; margin-bottom: 3px;
+    }
+
+    .ach-desc {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 0.95rem; font-weight: 400;
+      color: var(--text); line-height: 1.6;
+    }
+
+    .ach-year {
+      font-family: 'Fira Code', monospace;
+      font-size: 0.65rem; font-weight: 300;
+      color: var(--cyan); opacity: 0.55;
+      text-transform: none; font-weight: 300; letter-spacing: 0.05em;
+    }
+
+    /* ── LANGUAGES ── */
+    .langs { display: flex; flex-wrap: wrap; gap: 22px; }
+    .lang { display: flex; flex-direction: column; gap: 2px; }
+    .lang-name { font-family: 'Rajdhani', sans-serif; font-size: 0.94rem; font-weight: 600; color: var(--text-hi); letter-spacing: 0.1em; text-transform: uppercase; }
+    .lang-level { font-family: 'Fira Code', monospace; font-size: 0.62rem; font-weight: 300; color: var(--cyan); opacity: 0.5; letter-spacing: 0.1em; }
+
+    /* ── INTERESTS ── */
+    .interests { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+    .interest { border-left: 1.5px solid var(--gold-mid); padding-left: 16px; }
+    .interest-name { font-family: 'Rajdhani', sans-serif; font-size: 0.92rem; font-weight: 600; color: var(--text-hi); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 6px; }
+    .interest p { font-family: 'Rajdhani', sans-serif; font-size: 0.96rem; font-weight: 400; color: var(--text); line-height: 1.6; }
+
+    /* ── FOOTER ── */
+    footer {
+      margin-top: 50px; padding-top: 18px;
+      border-top: 1px solid var(--border);
+      display: flex; justify-content: space-between;
+      align-items: center; flex-wrap: wrap; gap: 8px;
+    }
+    .foot-id { font-family: 'Fira Code', monospace; font-size: 0.64rem; font-weight: 300; color: var(--text); opacity: 0.28; letter-spacing: 0.1em; }
+    .foot-onion { font-family: 'Fira Code', monospace; font-size: 0.64rem; font-weight: 300; display: flex; align-items: center; gap: 8px; opacity: 0.32; }
+    .foot-onion::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: var(--cyan); opacity: 0.7; }
+    .foot-onion a { color: var(--cyan); text-decoration: none; }
+    .foot-onion a:hover { opacity: 0.9; }
+
+    .rune { text-align: center; font-family: 'Fira Code', monospace; font-size: 0.6rem; color: var(--gold); opacity: 0.15; letter-spacing: 0.5em; margin: 26px 0; user-select: none; }
+
+    @media (max-width: 600px) {
+      .panel { padding: 22px 18px; }
+      .interests { grid-template-columns: 1fr; }
+      .ach { grid-template-columns: 1fr; }
+      .ach-badge { width: fit-content; margin-bottom: 6px; }
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+
+  <header>
+    <div class="name" id="name-el"><span class="name-cursor" id="cursor"></span></div>
+    <div class="subtitle" id="subtitle">iGCSE Student &nbsp;·&nbsp; Cybersecurity Enthusiast</div>
+    <nav class="contact-row" id="contact-row">
+      <span>London</span>
+      <span class="sep">|</span>
+      <a href="mailto:gabriel.fortin_cara@eleve.lyceefrancais.org.uk">gabriel.fortin_cara@eleve.lyceefrancais.org.uk</a>
+      <span class="sep">|</span>
+      <a href="https://github.com/blobofbob" target="_blank" rel="noopener">GitHub</a>
+      <span class="sep">|</span>
+      <a href="https://metrics.torproject.org/rs.html#details/E12AAF9B4C3A1C58C8350378E34C3E42642DB609" target="_blank" rel="noopener">Tor relay</a>
+      <span class="sep">|</span>
+      <a href="https://credly.com/users/gabriel-fortin-cara" target="_blank" rel="noopener">Credly</a>
+    </nav>
+    <div class="relay-status show" id="relay-status">
+      <span class="relay-dot" id="relay-dot"></span>
+      <span id="relay-text" style="font-family:'Fira Code',monospace;font-size:0.68rem;font-weight:300;letter-spacing:0.1em;opacity:0.5;">checking relay…</span>
+    </div>
+  </header>
+
+  <div class="rune">◆ ─── ◆ ─── ◆</div>
+
+  <!-- PROFILE -->
+  <div class="panel"><div class="c-tr"></div><div class="c-bl"></div>
+    <div class="sec-num">01 // profile</div>
+    <div class="sec-title">About</div>
+    <p class="profile-text">
+      iGCSE student at Lycée Français Charles de Gaulle with hands-on experience running a homelab, featuring services including an active Tor relay and self-hosted web services. I achieved second place worldwide in a competitive mathematics olympiad and have a Diplôme National du Brevet with High Distinction. I combine strong analytical rigour with practical systems knowledge across my various interests.
+    </p>
+  </div>
+
+  <!-- EDUCATION -->
+  <div class="panel"><div class="c-tr"></div><div class="c-bl"></div>
+    <div class="sec-num">02 // education</div>
+    <div class="sec-title">Education</div>
+    <div class="entry">
+      <div class="entry-head">
+        <span class="entry-title">Lycée Français Charles de Gaulle de Londres</span>
+        <span class="entry-date">Sep 2022 – Ongoing</span>
+      </div>
+      <div class="entry-sub">International Section</div>
+      <ul class="dots">
+        <li>Diplôme National du Brevet: High Distinction — 870.5 / 900</li>
+        <li>Duke of Edinburgh Silver Award</li>
+        <li>PSC1 First Aid Certification</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ACHIEVEMENTS -->
+  <div class="panel"><div class="c-tr"></div><div class="c-bl"></div>
+    <div class="sec-num">03 // achievements</div>
+    <div class="sec-title">Achievements</div>
+
+    <div class="ach">
+      <span class="ach-badge">2nd · World</span>
+      <div>
+        <div class="ach-name">René Merckhoffer Mathematics Competition <span class="ach-year">2024</span></div>
+        <div class="ach-desc">International mathematics competition; I ranked second among entrants worldwide.</div>
+      </div>
+    </div>
+    <div class="rule"></div>
+    <div class="ach">
+      <span class="ach-badge">Honour</span>
+      <div>
+        <div class="ach-name">Official Flagbearer — National Order of Merit</div>
+        <div class="ach-desc">I carry the French national flag at a ceremony for the Ordre National du Mérite, one of France's highest civilian honours.</div>
+      </div>
+    </div>
+    <div class="rule"></div>
+    <div class="ach">
+      <span class="ach-badge">1st Place</span>
+      <div>
+        <div class="ach-name">School Poetry Competition <span class="ach-year">2025</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TECHNICAL EXPERIENCE -->
+  <div class="panel"><div class="c-tr"></div><div class="c-bl"></div>
+    <div class="sec-num">04 // technical experience</div>
+    <div class="sec-title">Technical Experience</div>
+
+    <div class="entry">
+      <div class="entry-head">
+        <span class="entry-title">Systems Administrator — Personal Homelab</span>
+        <span class="entry-date">2023 – Ongoing</span>
+      </div>
+      <ul class="dots">
+        <li>I have built and maintained a Debian-based server hosting 6+ self-managed services including Pi-hole (network-wide DNS filtering), a public web server, and a Minecraft server.</li>
+        <li>Deployed Tailscale VPN for encrypted remote access; configured uptime monitoring and automated alerting.</li>
+        <li>Sole administrator responsible for incident response.</li>
+      </ul>
+    </div>
+    <div class="rule"></div>
+    <div class="entry">
+      <div class="entry-head">
+        <span class="entry-title">Tor Relay Operator &amp; Onion Service Administrator</span>
+        <span class="entry-date">2023 – Ongoing</span>
+      </div>
+      <ul class="dots">
+        <li>I operate an active Tor relay (fingerprint: E12AAF9B) contributing what I can to the Tor network.</li>
+        <li>Maintain a Tor (.onion) mirror of this website. (Link included at the end of this page)</li>
+        <li>Gained practical experience with the Tor network and how it operates.</li>
+      </ul>
+    </div>
+    <div class="rule"></div>
+    <div class="entry">
+      <div class="entry-head">
+        <span class="entry-title">Cybersecurity &amp; OSINT Practice</span>
+        <span class="entry-date">2024 – Ongoing</span>
+      </div>
+      <ul class="dots">
+        <li>I am a regular participant in picoCTF challenges covering web exploitation, cryptography, binary exploitation, and forensics.</li>
+        <li>I have also completed structured OSINT investigations on my friends.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- SKILLS -->
+  <div class="panel"><div class="c-tr"></div><div class="c-bl"></div>
+    <div class="sec-num">05 // skills</div>
+    <div class="sec-title">Technical Skills</div>
+
+    <div class="skill-row">
+      <div class="skill-cat">Operating Systems &amp; Platforms</div>
+      <div class="tags">
+        <span class="tag">Debian/Linux</span><span class="tag">Raspberry Pi OS</span><span class="tag">Windows</span>
+      </div>
+    </div>
+    <div class="rule"></div>
+    <div class="skill-row">
+      <div class="skill-cat">Networking &amp; Security</div>
+      <div class="tags">
+        <span class="tag">DNS filtering (Pi-hole)</span><span class="tag">VPN (Tailscale)</span><span class="tag">Tor relay &amp; onion services</span><span class="tag">Firewall config</span>
+      </div>
+    </div>
+    <div class="rule"></div>
+    <div class="skill-row">
+      <div class="skill-cat">Programming &amp; Tools</div>
+      <div class="tags">
+        <span class="tag">Python</span><span class="tag">Bash</span><span class="tag">HTML</span><span class="tag">Git</span><span class="tag">PyTorch (very limited)</span>
+      </div>
+    </div>
+    <div class="rule"></div>
+    <div class="skill-row">
+      <div class="skill-cat">Tools &amp; Concepts</div>
+      <div class="tags">
+        <span class="tag">SSH</span><span class="tag">Self-hosted web servers</span><span class="tag">Uptime monitoring</span><span class="tag">OSINT</span><span class="tag">CTF (picoCTF)</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- LANGUAGES + INTERESTS -->
+  <div class="panel"><div class="c-tr"></div><div class="c-bl"></div>
+    <div class="sec-num">06 // languages &amp; interests</div>
+    <div class="sec-title">Languages &amp; Interests</div>
+
+    <div class="langs" style="margin-bottom:28px;">
+      <div class="lang"><span class="lang-name">English</span><span class="lang-level">fluent</span></div>
+      <div class="lang"><span class="lang-name">French</span><span class="lang-level">native</span></div>
+      <div class="lang"><span class="lang-name">Portuguese</span><span class="lang-level">fluent · Brazilian</span></div>
+      <div class="lang"><span class="lang-name">German</span><span class="lang-level">in progress</span></div>
+    </div>
+    <div class="rule"></div>
+    <div class="interests">
+      <div class="interest">
+        <div class="interest-name">Competitive Épée Fencing</div>
+        <p>Regular training and competition in épée fencing, developing rapid decision-making, tactical adaptation, and composure under pressure.</p>
+      </div>
+      <div class="interest">
+        <div class="interest-name">Miniature Modelling — Warhammer</div>
+        <p>High-detail assembly and painting of miniatures requiring structured planning, patience, and precision — qualities that carry directly into technical work.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="rune">◆ ─── ◆ ─── ◆</div>
+
+  <footer>
+    <span class="foot-id">Gabriel Fortin Cara · London · <?php echo date('Y'); ?></span>
+    <span class="foot-onion">onion mirror:&nbsp;<a href="http://male3e4xwgo4swc7awciiw2vrqsok26uz3ywucte5kcvrcxsluob7kyd.onion" target="_blank" rel="noopener">male3e4x…ob7kyd.onion</a></span>
+  </footer>
+
+</div>
+<script>
+  // Typewriter
+  const el = document.getElementById('name-el');
+  const cur = document.getElementById('cursor');
+  const txt = 'Gabriel Fortin Cara';
+  let i = 0;
+  function type() {
+    if (i < txt.length) {
+      el.insertBefore(document.createTextNode(txt[i++]), cur);
+      setTimeout(type, i === 1 ? 260 : 58 + Math.random() * 44);
+    } else {
+      setTimeout(() => cur.style.display = 'none', 2500);
+    }
+  }
+  setTimeout(type, 380);
+  setTimeout(() => document.getElementById('subtitle').classList.add('show'), 1900);
+  setTimeout(() => document.getElementById('contact-row').classList.add('show'), 2300);
+
+  // Live Tor relay status
+  async function checkRelay() {
+    try {
+      const r = await fetch('https://onionoo.torproject.org/details?lookup=E12AAF9B4C3A1C58C8350378E34C3E42642DB609');
+      const d = await r.json();
+      const relay = d.relays && d.relays[0];
+      const dot = document.getElementById('relay-dot');
+      const txt = document.getElementById('relay-text');
+      if (relay && relay.running) {
+        dot.classList.add('active');
+        const bw = relay.advertised_bandwidth;
+        const bwStr = bw > 1e6 ? (bw/1e6).toFixed(1)+' MB/s' : bw > 1e3 ? (bw/1e3).toFixed(0)+' KB/s' : bw+'B/s';
+        txt.textContent = 'relay active · ' + bwStr + ' · ' + (relay.flags||[]).filter(f=>['Guard','Stable','Running'].includes(f)).join(' · ').toLowerCase();
+      } else {
+        txt.textContent = 'relay offline';
+      }
+    } catch(e) {
+      document.getElementById('relay-text').textContent = 'relay status unavailable';
+    }
+  }
+  checkRelay();
+
+  // Scroll reveal
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if(e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+  }, { threshold: 0.07 });
+  document.querySelectorAll('.panel').forEach(p => obs.observe(p));
+</script>
+</body>
+</html>
