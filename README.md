@@ -1,1 +1,1 @@
-In order to teach myself about the IoT in the context of cubersecurity, i made myself a website displaying my CV. This repository acts as a backup. If you have any recommendations, I would love to hear them:). The comments on the code are here to remind me of what i just vibe-coded XD.
+In order to teach myself about the IoT in the context of cybersecurity, i made myself a website displaying my CV. This repository acts as a backup. If you have any recommendations, I would love to hear them:). The comments on the code are here to remind me of what i just vibe-coded XD.
