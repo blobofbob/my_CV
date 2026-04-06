@@ -4,7 +4,7 @@ London  |  [gabriel.fortin\_cara@eleve.lyceefrancais.org.uk](mailto:gabriel.fort
 
 **Profile**
 
-iGCSE student at Lycée Français Charles de Gaulle with hands-on experience running a homelab, featuring services such as an active Tor relay and self-hosted web services. I achieved second place worldwide in a competitive mathematics olympiad and have a Diplôme National du Brevet with High Distinction. I combine strong analytical rigour with practical systems knowledge across my various interests.
+iGCSE student at Lycée Français Charles de Gaulle with hands-on experience running a homelab, featuring services such as an active Tor relay and self-hosted web services. I achieved second place worldwide in a competitive mathematics olympiad (in a team of 2) and have a Diplôme National du Brevet with High Distinction. I combine strong analytical rigour with practical systems knowledge across my various interests.
 
 **Education**
 
@@ -20,7 +20,7 @@ iGCSE student at Lycée Français Charles de Gaulle with hands-on experience run
 
 **2nd Place Worldwide — René Merckhoffer Mathematics Competition**  *2024*
 
-International mathematics competition; I ranked second among entrants worldwide.
+International mathematics competition; I ranked second among entrants worldwide in the team category.
 
 **Official Flagbearer — National Order of Merit (France)**
 
