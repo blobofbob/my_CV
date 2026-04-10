@@ -1,1 +1,14 @@
-In order to teach myself about the IoT in the context of cybersecurity, i made myself a website displaying my CV. This repository acts as a backup. If you have any recommendations, I would love to hear them:). The comments on the code are here to remind me of what i just vibe-coded XD.
+# Personal CV Website (Self-Hosted)
+
+This repository contains the source code for my personal CV website and acts as a backup.It hosted on a self-managed server as part of my homelab.
+
+## Purpose
+
+This project was made to help me develop practical experience in web hosting and infrastructure, explore security considerations in self-hosted environments (although i havent given much thought to this yet) and apply networking and system administration concepts in a real-world setting, because theory only goes so far.
+
+## Features
+
+- Self-hosted web server
+- Tor (.onion) mirror
+- Live Tor relay status integration via Onionoo API
+- Custom-designed responsive UI
